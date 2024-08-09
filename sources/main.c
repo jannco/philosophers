@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:00:39 by yadereve          #+#    #+#             */
-/*   Updated: 2024/08/09 17:02:59 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:20:08 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int	arguments_valid(char **argv)
 		if (ft_atoi(argv[i]) < 1)
 		{
 			if (i == PHILOSOPHERS)
-				return (error_mesage("Incorrect number of philosophers"));
+				return (error_message("Incorrect number of philosophers"));
 			else if (i == MEALS)
-				return (error_mesage("Invalid number for times to eat"));
+				return (error_message("Invalid number for times to eat"));
 			else
-				return (error_mesage("Incorrect time"));
+				return (error_message("Incorrect time"));
 		}
 		i++;
 	}
@@ -67,7 +67,7 @@ int	arguments_valid(char **argv)
 int	init_data(t_data *data, int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
-		return (error_mesage("Incorrect number of arguments"));
+		return (error_message("Incorrect number of arguments"));
 	if (arguments_valid(argv))
 		return (1);
 	data->number_of_philosophers = ft_atoi(argv[1]);
@@ -81,11 +81,11 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* data->number_of_philosophers);
 	if (!data->forks)
-		return (error_mesage("Data initialization error"));
+		return (error_message("Data initialization error"));
 	data->philosophers = (t_philosopher *)malloc(sizeof(t_philosopher)
 			* data->number_of_philosophers);
 	if (!data->philosophers)
-		return (error_mesage("Data initialization error"));
+		return (error_message("Data initialization error"));
 	data->start_time = current_timestamp();
 	data->simulation_run = true;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:38 by yadereve          #+#    #+#             */
-/*   Updated: 2024/08/09 17:08:15 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:19:37 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_data
 }	t_data;
 
 int		ft_atoi(const char *str);
-int		error_mesage(char *str);
+int		error_message(char *str);
 void	cleanup(t_data *data);
 size_t	current_timestamp(void);
 void	print_status(t_data *data, int id, char *status);

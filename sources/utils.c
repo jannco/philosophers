@@ -6,13 +6,13 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 17:00:29 by yadereve          #+#    #+#             */
-/*   Updated: 2024/08/09 17:02:23 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:19:18 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	error_mesage(char *str)
+int	error_message(char *str)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ size_t	current_timestamp(void)
 	struct timeval	current_time;
 
 	if (gettimeofday(&current_time, NULL) == -1)
-		error_mesage("Failed to get current time");
+		error_message("Failed to get current time");
 	return ((current_time.tv_sec * MILLISEC)
 		+ (current_time.tv_usec / MILLISEC));
 }
