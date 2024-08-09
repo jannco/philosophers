@@ -6,7 +6,7 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/14 18:17:53 by yadereve          #+#    #+#              #
-#    Updated: 2024/08/02 17:42:52 by yadereve         ###   ########.fr        #
+#    Updated: 2024/08/02 23:32:57 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ OBJ_DIR				=	objects
 OBJ					=	$(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))
 
 GREEN				=	\033[32m
-NC					=	\033[0m
 ORANGE				=	\033[31m\033[33m
 BLUE				=	\033[1;34m
+NC					=	\033[0m
 PECKED				=	-----------
 
 all: $(NAME)
