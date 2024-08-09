@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:38 by yadereve          #+#    #+#             */
-/*   Updated: 2024/08/09 14:19:35 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:08:15 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -58,6 +58,20 @@ typedef struct s_data
 }	t_data;
 
 int		ft_atoi(const char *str);
-void	error_mesage(char *str);
+int		error_mesage(char *str);
+void	cleanup(t_data *data);
+size_t	current_timestamp(void);
+void	print_status(t_data *data, int id, char *status);
+void	sleep_and_think(t_philosopher *philo);
+void	eat(t_philosopher *philo);
+void	take_forks(t_philosopher *philo);
+void	*philosopher_routine(void *arg);
+void	check_status(t_philosopher *philo);
+void	*monitoir_routine(void *arg);
+void	start_simulation(t_data *data);
+void	init_mutexes(t_data *data);
+void	init_philosophers(t_data *data);
+int		arguments_valid(char **argv);
+int		init_data(t_data *data, int argc, char **argv);
 
 #endif
