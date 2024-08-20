@@ -6,7 +6,7 @@
 #    By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/14 18:17:53 by yadereve          #+#    #+#              #
-#    Updated: 2024/08/09 17:06:33 by yadereve         ###   ########.fr        #
+#    Updated: 2024/08/20 15:27:50 by yadereve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RM					=	rm -rf
 
 SRC_DIR				=	sources
 SRC					=	$(addprefix $(SRC_DIR)/,$(addsuffix .c, $(FILES_SOURCES)))
-FILES_SOURCES		=	main philo routine utils
+FILES_SOURCES		=	main philo routine utils utils2
 OBJ_DIR				=	objects
 OBJ					=	$(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))
 

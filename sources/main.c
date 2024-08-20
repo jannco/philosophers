@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:00:39 by yadereve          #+#    #+#             */
-/*   Updated: 2024/08/09 17:20:08 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:58:09 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void	init_mutexes(t_data *data)
 	i = 0;
 	while (i < data->number_of_philosophers)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			error_message("Failed to initialize fork mutex");
 		pthread_mutex_init(&data->philosophers[i++].meal_time_lock, NULL);
 	}
 	pthread_mutex_init(&data->print_lock, NULL);
+	pthread_mutex_init(&data->meals_eaten_lock, NULL);
+	pthread_mutex_init(&data->simulation_lock, NULL);
 }
 
 void	init_philosophers(t_data *data)
@@ -50,7 +53,7 @@ int	arguments_valid(char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (ft_atoi(argv[i]) < 1)
+		if (ft_atoi(argv[i]) <= 0)
 		{
 			if (i == PHILOSOPHERS)
 				return (error_message("Incorrect number of philosophers"));
@@ -81,13 +84,15 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* data->number_of_philosophers);
 	if (!data->forks)
-		return (error_message("Data initialization error"));
+		return (error_message("Failed to allocate memory for forks"));
 	data->philosophers = (t_philosopher *)malloc(sizeof(t_philosopher)
 			* data->number_of_philosophers);
 	if (!data->philosophers)
-		return (error_message("Data initialization error"));
+	{
+		free(data->forks);
+		return (error_message("Failed to allocate memory for philosophers"));
+	}
 	data->start_time = current_timestamp();
-	data->simulation_run = true;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yadereve <yadereve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:38 by yadereve          #+#    #+#             */
-/*   Updated: 2024/08/09 17:19:37 by yadereve         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:28:36 by yadereve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,19 @@ typedef struct s_data
 	size_t			start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_lock;
+	pthread_mutex_t	simulation_lock;
+	pthread_mutex_t	meals_eaten_lock;
 	t_philosopher	*philosophers;
 }	t_data;
 
 int		ft_atoi(const char *str);
 int		error_message(char *str);
 void	cleanup(t_data *data);
+void	ft_usleep(suseconds_t time);
 size_t	current_timestamp(void);
+bool	time_passed(size_t time_to_die, t_philosopher *philo);
+bool	status_philo(t_philosopher *philo);
+bool	status_simulation(t_data *data);
 void	print_status(t_data *data, int id, char *status);
 void	sleep_and_think(t_philosopher *philo);
 void	eat(t_philosopher *philo);
@@ -68,7 +74,7 @@ void	take_forks(t_philosopher *philo);
 void	*philosopher_routine(void *arg);
 void	check_status(t_philosopher *philo);
 void	*monitoir_routine(void *arg);
-void	start_simulation(t_data *data);
+int		start_simulation(t_data *data);
 void	init_mutexes(t_data *data);
 void	init_philosophers(t_data *data);
 int		arguments_valid(char **argv);
